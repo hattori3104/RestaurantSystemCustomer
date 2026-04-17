@@ -7,9 +7,9 @@
 <title>RestaurantSystemCustomer shop_start.jsp</title>
 </head>
 <body>
-<form action = "OrderStartServlet" method = "get">
+<form action = "OrderStartServlet" method = "post">
 卓番：<br>
-<input type = "number" name = "table_number"><br>
+<input type = "number" name = "table_id"><br>
 <input type = "submit" value = "登録">
 </form>
 </body>
