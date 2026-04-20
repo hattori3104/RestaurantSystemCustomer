@@ -9,4 +9,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>OrderMenuServlet</display-name>
+    <servlet-name>OrderMenuServlet</servlet-name>
+    <servlet-class>servlet.OrderMenuServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderMenuServlet</servlet-name>
+    <url-pattern>/OrderMenuServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

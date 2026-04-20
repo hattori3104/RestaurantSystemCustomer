@@ -30,7 +30,7 @@ public class OrderStartServlet extends HttpServlet {
 	    
         TableInfo tableInfo = dao.selectTableInfo(table_id, table_token);
         request.setAttribute("table_info", tableInfo);
-
+        
         if (InitialState.equals("active")) {
             request.getRequestDispatcher("WEB-INF/jsp/order_start.jsp").forward(request, response);
         } else if (InitialState.equals("inactive")) {
