@@ -11,25 +11,6 @@ img {
 	max-height: 100%;
 }
 
-.header-image {
-	position: absolute;
-	top: 50%;
-/*	left: 50%; */
-	transform: translate(-50%, -50%);
-/*	max-width: 100%; 
-	height: auto; */
-}
-
-.header-background-image {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%; 
-	height: 90px;
-/*	padding: 0; 
-	text-align: center; */
-}
-
 .header-storename {
 	position: fixed;
 	top: 0;
@@ -45,18 +26,103 @@ img {
 	position: relative;
 	width: 100%;
 	height: 90px;
-	flex-direction: column;
-	overflow: hidden;
+/*	flex-direction: column;
+	overflow: hidden; */
 }
 
-.size-text {
-	font-size: 20pt;
+.header-background-image {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%; 
+	height: 90px;
+/*	padding: 0; 
+	text-align: center; */
+}
+
+.header-image {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+/*	max-width: 100%; 
+	height: auto; */
 }
 
 .center-text {
 	color: black;
 	font-size: 20px;
 	text-align: center;
+}
+
+.center-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+/*	width: 100%;
+	height: 100%; */
+}
+
+.square-box {
+	width: 500px;
+	height: 90px;
+	background-color: gold;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+/*フッターのスタイル*/
+.footer-buttons {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: white; /*フッターの背景色*/
+	color: black;
+	text-align: center;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	border-top: 2px solid #D3D3D3; /*線の削除*/
+	z-index: 1000;
+}
+
+.footer-subtotal {
+	position: fixed;
+	bottom: 90px;
+	left: 0;
+	width: 100%;
+	background-color: seashell; /*フッターの背景色*/
+	color: black;
+	text-align: center;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	border-top: 2px solid black; /*線の削除*/
+	z-index: 999;
+}
+
+/*フッターの範囲*/
+.footer-wrapper {
+	position: relative;
+	width: 100%;
+	height: 90px;
+	overflow: hidden;
+}
+
+.footer-subtotal-wrapper {
+	position: relative;
+	width: 100%;
+	height: 90px;
+	overflow: hidden;
 }
 
 .table-number {
@@ -66,5 +132,11 @@ img {
 	font-size: 30px;
 	font-weight: bold;
 	color: black;
+}
+
+/* */
+
+.size-text {
+	font-size: 20pt;
 }
 
