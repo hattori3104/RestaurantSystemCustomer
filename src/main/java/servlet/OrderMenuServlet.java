@@ -20,14 +20,14 @@ import model.ProductInfo;
 @WebServlet("/OrderMenuServlet")
 public class OrderMenuServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    public static final List<String> CATEGORY_LIST = Arrays.asList(
+    public static final List<String> categoryList = Arrays.asList(
             "お好み焼き", "もんじゃ焼き", "鉄板焼き", "サイドメニュー", "ソフトドリンク", "お酒", "ボトル");
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
     try {
-//        HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 //        String session_id_string = (String) session.getAttribute("session_id");
 //        int session_id = Integer.parseInt(session_id_string);
 //        int table_id = (int)session.getAttribute("table_id");
@@ -39,7 +39,7 @@ public class OrderMenuServlet extends HttpServlet {
 //            System.out.println(productInfoList.get(i));
 //        }
         request.setAttribute("product_info_list", productInfoList);
-        request.setAttribute("product_category", CATEGORY_LIST);
+        request.setAttribute("product_category_list", categoryList);
 
         request.getRequestDispatcher("WEB-INF/jsp/order_menu.jsp").forward(request, response);
         
@@ -64,16 +64,16 @@ public class OrderMenuServlet extends HttpServlet {
     	    int session_id = Integer.parseInt(session_id_string);
             String table_id = request.getParameter("table_id");
             String session_status = request.getParameter("session_status");
-            String form = request.getParameter("form");
+            String previous_state = request.getParameter("previous_state");
     
             HttpSession session = request.getSession();
             session.setAttribute("session_id", session_id);
             session.setAttribute("table_id", table_id);
             session.setAttribute("session_status", session_status);
-            session.setAttribute("form", form);
+            session.setAttribute("previous_state", previous_state);
             
             OrderMenuDAO dao = new OrderMenuDAO();
-            if (form.equals("order_start.jsp")) {
+            if (previous_state.equals("OrderStart")) {
                 int guest_count = Integer.parseInt(request.getParameter("guest_count"));
                 session.setAttribute("guest_count", guest_count);
                 dao.updateGuestCount(guest_count, session_id);

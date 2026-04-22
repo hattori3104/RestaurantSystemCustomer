@@ -75,7 +75,15 @@ img {
 	padding: 10px;
 }
 
-/*フッターのスタイル*/
+.table-number {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 30px;
+	font-weight: bold;
+	color: black;
+}
+
 .footer-buttons {
 	position: fixed;
 	bottom: 0;
@@ -92,6 +100,67 @@ img {
 	border-top: 2px solid #D3D3D3; /*線の削除*/
 	z-index: 1000;
 }
+
+.footer-wrapper {
+	position: relative;
+	width: 100%;
+	height: 90px;
+	overflow: hidden;
+}
+
+.fixed-right-button {
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	width: 35%;
+	height: 90px;
+	padding: 10px 20px;
+	background-color: coral;
+	color: black;
+	border: none;
+	border-radius: 0px;
+	cursor: pointer;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px; /*画像とテキストの間隔*/
+}
+
+.fixed-right-button img {
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+}
+
+.fixed-left-button {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 35%;
+	height: 90px;
+	padding: 10px 20px;
+	background-color: palegreen;
+	color: black;
+	border: none;
+	border-radius: 0px;
+	cursor: pointer;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px; /*画像とテキストの間隔*/
+}
+
+.fixed-left-button img {
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+}
+
+/* */
 
 .footer-subtotal {
 	position: fixed;
@@ -110,31 +179,12 @@ img {
 	z-index: 999;
 }
 
-/*フッターの範囲*/
-.footer-wrapper {
-	position: relative;
-	width: 100%;
-	height: 90px;
-	overflow: hidden;
-}
-
 .footer-subtotal-wrapper {
 	position: relative;
 	width: 100%;
 	height: 90px;
 	overflow: hidden;
 }
-
-.table-number {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 30px;
-	font-weight: bold;
-	color: black;
-}
-
-/* */
 
 .size-text {
 	font-size: 20pt;

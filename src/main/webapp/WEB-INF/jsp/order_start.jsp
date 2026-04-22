@@ -41,7 +41,7 @@
 
 	<div class="center-container">
 		<form action="OrderMenuServlet" method="post">
-			<input type="hidden" name="form" value="State">
+			<input type="hidden" name="previous_state" value="OrderStart">
 			<input type="hidden" name="session_id" value="<c:out value='${table_info.session_id}' />">
 			<input type="hidden" name="table_id" value="<c:out value='${table_info.table_id}' />">
 			<input type="hidden" name="session_status" value="<c:out value='${table_info.session_status}' />">
