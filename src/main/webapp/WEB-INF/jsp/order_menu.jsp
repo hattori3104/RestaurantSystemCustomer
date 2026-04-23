@@ -49,7 +49,7 @@
 									<div class="break-word bold-text"><c:out value="${product.product_name}" /></div>
 									<c:if test="${product.product_stock > 0}">
 										<%-- 在庫がある場合は商品詳細画面へ遷移 --%>
-										<form action="MenuDetailsNewServlet" method="post">
+										<form action="ItemDetailsNewServlet" method="post">
 											<input type="hidden" name="previous_state" value="OrderMenu">
 											<input type="hidden" name="product_id" 
 											value="<c:out value="${product.product_id}" />">
@@ -116,7 +116,7 @@
 					</c:if>
 				</button>
 			</form>
-			<form action="WEB-INF/jsp/order_history.jsp}" method="post">
+			<form action="WEB-INF/jsp/order_history.jsp" method="post">
 				<button class="fixed-left-button">
 					<img src="${pageContext.request.contextPath}/image/menuhistory.png" alt="履歴・お会計のボタン"> 履歴・お会計
 				</button>

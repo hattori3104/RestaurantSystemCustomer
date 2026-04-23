@@ -13,10 +13,10 @@ import model.ItemInfo;
 import model.ToppingInfo;
 
 /**
- * Servlet implementation class MenuDetailsNewServlet
+ * Servlet implementation class ItemDetailsNewServlet
  */
 
-@WebServlet("/MenuDetailsNewServlet")
+@WebServlet("/ItemDetailsNewServlet")
 
 public class ItemDetailsNewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+.orderlist {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.orderlist li {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.orderlist li:last-child {
+	border-bottom: none;
+}
+
+.product-text {
+	position: absolute;
+	top: 0;
+	left: 30px;
+	color: black;
+	font-weight: bold;
+}
+
+.price-text {
+	position: absolute;
+	bottom: 0;
+	right: 30px;
+	color: black;
+}
+
+.subtotal-text {
+	position: absolute;
+	top: 10px;
+	right: 30px;
+	color: black;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+.order-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.product-name {
+	flex-grow: 1;
+}
+
+.product-price {
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+.topping-name {
+	flex-grow: 1;
+}
+
+.topping-price {
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+.subtotal-price {
+	margin-left: auto;
+	font-weight: bold;
+}
+
+/* ボタンの横並びを調整 */
+.buttons-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start; /* 左寄せ */
+	gap: 10px; /* 変更ボタンと増減ボタンの間隔 */
+	width: 100%;
+	position: relative; /* 相対位置を設定 */
+}
+
+/* 変更ボタン */
+.change-btn {
+	padding: 10px 20px;
+	background-color: green;
+	border: none;
+	color: white;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.change-btn:hover {
+	background-color: #ccc; /* ホバー時の色変更 */
+}
+
+/* 増減ボタンのスタイル */
+.quantity-buttons {
+	margin-left: auto; /* 左の余白を自動で埋めて右端に配置 */
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.decrease-btn, .increase-btn {
+	padding: 10px 15px;
+	font-size: 16px;
+	background-color: #3498db;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.dustbox-img {
+	width: 15px;
+	height: 15px;
+}
+
+.decrease-btn:hover, .increase-btn:hover {
+	background-color: #2980b9;
+}
+
+/* 数量表示 */
+.quantity {
+	padding: 0 10px;
+	font-size: 16px;
+	font-weight: bold;
+}

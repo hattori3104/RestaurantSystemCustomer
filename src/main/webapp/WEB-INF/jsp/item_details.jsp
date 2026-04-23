@@ -31,12 +31,12 @@
 			//メニュー画面から遷移してきた場合
 			if (previousState.equals("OrderMenu")) {
 			%>
-			<c:if test="${not empty addProductInfo}">
+			<c:if test="${not empty item_info}">
 				<div class="product-text">
-					<c:out value="${addProductInfo.product_name}" />
+					<c:out value="${item_info.product_name}" />
 				</div>
 				<div class="price-text">
-					<c:out value="${addProductInfo.product_price}" />
+					<c:out value="${item_info.product_price}" />
 					円(税込)
 				</div>
 			</c:if>
@@ -44,12 +44,12 @@
 			//注文リスト画面から遷移してきた場合
 			} else if (previousState.equals("OrderList")) {
 			%>
-			<c:if test="${not empty changeProductInfo}">
+			<c:if test="${not empty item_info}">
 				<div class="product-text">
-					<c:out value="${changeProductInfo.product_name}" />
+					<c:out value="${item_info.product_name}" />
 				</div>
 				<div class="price-text">
-					<c:out value="${changeProductInfo.product_price}" />
+					<c:out value="${item_info.product_price}" />
 					円(税込)
 				</div>
 			</c:if>
@@ -64,13 +64,13 @@
 		if (previousState.equals("OrderMenu")) {
 		%>
 		<!-- セッションからカテゴリー名を取ってくる -->
-		<c:if test="${not empty addProductInfo.category_name}">
+		<c:if test="${not empty item_info.category_name}">
 			<c:choose>
 				<c:when
-					test="${addProductInfo.category_name == 'お好み焼き' || addProductInfo.category_name == 'もんじゃ焼き'}">
-					<c:if test="${not empty toppingInfo}">
+					test="${item_info.category_name == 'お好み焼き' || item_info.category_name == 'もんじゃ焼き'}">
+					<c:if test="${not empty topping_info}">
 						<p>トッピング</p>
-						<c:forEach var="topping" items="${toppingInfo}" varStatus="status">
+						<c:forEach var="topping" items="${topping_info}" varStatus="status">
 							<li class="topping-row">
 								<c:if test="${topping.topping_display_flag == 1}">
 									<div class="break-topping">
@@ -87,10 +87,11 @@
 									<c:if test="${topping.topping_stock <= 0}">
 										<img src="${pageContext.request.contextPath}/image/soldout.png" alt="Sold Out" class="soldout-img" />
 									</c:if>
-								</c:if></li>
+								</c:if>
+							</li>
 						</c:forEach>
 					</c:if>
-					<c:if test="${empty toppingInfo}">
+					<c:if test="${empty topping_info}">
 						<div>トッピングはありません。</div>
 					</c:if>
 				</c:when>
@@ -105,8 +106,8 @@
 			<c:choose>
 				<c:when test="${changeProductInfo.category_name == 'お好み焼き' || changeProductInfo.category_name == 'もんじゃ焼き'}">
 					<p>トッピング</p>
-					<c:if test="${not empty toppingInfo}">
-						<c:forEach var="topping" items="${toppingInfo}" varStatus="status">
+					<c:if test="${not empty topping_info}">
+						<c:forEach var="topping" items="${topping_info}" varStatus="status">
 							<c:set var="topping_quantity" value="${changeProductInfo.topping_quantity[status.index]}" />
 							<li class="topping-row">
 								<c:if test="${topping.topping_display_flag == 1}">
@@ -127,7 +128,7 @@
 								</c:if></li>
 						</c:forEach>
 					</c:if>
-					<c:if test="${empty toppingInfo}">
+					<c:if test="${empty topping_info}">
 						<div>トッピングはありません。</div>
 					</c:if>
 				</c:when>
@@ -148,19 +149,19 @@
 			//メニュー画面から遷移してきた場合
 			if (previousState.equals("OrderMenu")) {
 			%>
-			<form action="OrderList" method="post">
+			<form action="OrderListServlet" method="post">
 				<button class="fixed-right-button">
-					<input type="hidden" name="product_id" value="<c:out value='${addProductInfo.product_id}' />"> 
-					<input type="hidden" name="product_name" value="<c:out value='${addProductInfo.product_name}' />">
-					<input type="hidden" name="category_name}" value="<c:out value='${addProductInfo.category_name}' />">
-					<input type="hidden" name="product_price" value="<c:out value='${addProductInfo.product_price}' />">
-					<input type="hidden" name="product_stock}" value="<c:out value='${addProductInfo.product_stock}' />">
+					<input type="hidden" name="product_id" value="<c:out value='${item_info.product_id}' />"> 
+					<input type="hidden" name="product_name" value="<c:out value='${item_info.product_name}' />">
+					<input type="hidden" name="category_name" value="<c:out value='${item_info.category_name}' />">
+					<input type="hidden" name="product_price" value="<c:out value='${item_info.product_price}' />">
+					<input type="hidden" name="product_stock" value="<c:out value='${item_info.product_stock}' />">
 					<c:forEach var="topping" items="${topping_info}" varStatus="status">
-						<input type="hidden" name="${topping_id}" value="<c:out value='${topping.topping_id}' />">
-						<input type="hidden" name="${topping_name}" value="<c:out value='${topping.topping_name}' />">
-						<input type="hidden" name="${topping_price}" value="<c:out value='${topping.topping_price}' />">
-						<input type="hidden" name="${topping_quantity}" id="topping-<c:out value='${topping.topping_id}' />" value="0">
-						<input type="hidden" name="${topping_stock}" value="<c:out value='${topping.topping_stock}' />">
+						<input type="hidden" name="topping_id" value="<c:out value='${topping.topping_id}' />">
+						<input type="hidden" name="topping_name" value="<c:out value='${topping.topping_name}' />">
+						<input type="hidden" name="topping_price" value="<c:out value='${topping.topping_price}' />">
+						<input type="hidden" name="topping_quantity" id="topping-<c:out value='${topping.topping_id}' />" value="0">
+						<input type="hidden" name="topping_stock" value="<c:out value='${topping.topping_stock}' />">
 					</c:forEach>
 					<input type="hidden" name="${Param.TOTAL}" id="input-total" value=""> 
 					<img src="${pageContext.request.contextPath}/image/addCart.png"alt="追加のボタン"> 追加
@@ -170,7 +171,7 @@
 			//注文リスト画面から遷移してきた場合
 			} else if (previousState.equals("OrderList")) {
 			%>
-			<form action="OrderList" method="post">
+			<form action="OrderListServlet" method="post">
 				<button class="fixed-right-button">
 					<input type="hidden" name="${Param.ORDER_ID}"value="<c:out value='${changeProductInfo.order_id}' />"> 
 					<input type="hidden" name="${Param.PRODUCT_ID}" value="<c:out value='${changeProductInfo.product_id}' />">
@@ -197,7 +198,7 @@
 			<%
 			}
 			%>
-			<a href="${Action.MENU}">
+			<a href="OrderMenuServlet">
 				<button class="fixed-left-button">
 					<img src="${pageContext.request.contextPath}/image/menu.png" alt="メニューのボタン"> メニュー
 				</button>
@@ -214,18 +215,18 @@
 
 	<script>
     // 商品本体価格
-    const basePrice = <c:out value="${empty addProductInfo ? (empty changeProductInfo ? 0 : changeProductInfo.product_price) : addProductInfo.product_price}" />;
-    const initialTotal = <c:out value="${empty addProductInfo ? (empty changeProductInfo ? 0 : changeProductInfo.subtotal) : addProductInfo.product_price}" />;
+    const basePrice = <c:out value="${empty item_info ? (empty changeProductInfo ? 0 : changeProductInfo.product_price) : item_info.product_price}" />;
+    const initialTotal = <c:out value="${empty item_info ? (empty changeProductInfo ? 0 : changeProductInfo.subtotal) : item_info.product_price}" />;
 
     // トッピングの価格を JS オブジェクトで渡す
     const toppingPrices = {
-	<c:if test="${not empty toppingInfo}">
-    	<c:forEach var="topping" items="${toppingInfo}" varStatus="status">
+	<c:if test="${not empty topping_info}">
+    	<c:forEach var="topping" items="${topping_info}" varStatus="status">
         	"${topping.topping_id}": ${topping.topping_price}<c:if test="${!status.last}">,</c:if>
     	</c:forEach>
 	</c:if>
 	};
 	</script>
-	<script src="${pageContext.request.contextPath}/JavaScript/Details/details.js"></script>
+	<script src="${pageContext.request.contextPath}/js/item_details.js"></script>
 </body>
 </html>

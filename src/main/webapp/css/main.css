@@ -19,7 +19,7 @@ img {
 	/*background-color:gold;*/
 /*	padding: 0; */
 	text-align: center;
-/*	z-index: 1000; */
+	z-index: 1000;
 }
 
 .header-image-wrapper {
@@ -47,6 +47,31 @@ img {
 	transform: translate(-50%, -50%);
 /*	max-width: 100%; 
 	height: auto; */
+}
+
+.header-product {
+	position: fixed;
+	top: 90px;
+	left: 0;
+	width: 100%;
+	background-color: seashell;
+	padding: 0;
+	text-align: center;
+	z-index: 1000;
+	border-bottom: 2px solid black;
+}
+
+.header-product-wrapper {
+	position: relative;
+	width: 100%;
+	height: 90px;
+	overflow: hidden;
+}
+
+.details-main {
+	margin-top: 90px;
+	margin-bottom: 180px;
+	padding: 20px;
 }
 
 .center-text {
@@ -160,6 +185,70 @@ img {
 	object-fit: contain;
 }
 
+.break-topping {
+	width: 250px;
+	word-wrap: break-word;
+}
+
+/*ポップアップの背景*/
+.popup-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+}
+
+/*ポップアップの内容*/
+.popup-content {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	padding: 50px;
+	border-radius: 2px;
+	z-index: 1001;
+	width: 200px;
+	height: auto;
+}
+
+/*ポップアップを表示する*/
+.popup-overlay.show, .popup-content.show {
+	display: block;
+}
+
+/*閉じるボタンのスタイル*/
+.popup-close {
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+/*進むボタンのスタイル*/
+.popup-proceed {
+	background-color: red;
+	color: white;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.popup-img {
+	background-color: transparent;
+}
+
 /* */
 
 .footer-subtotal {
@@ -190,3 +279,7 @@ img {
 	font-size: 20pt;
 }
 
+.break-word {
+	width: 210px;
+	word-wrap: break-word;
+}
