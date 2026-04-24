@@ -42,7 +42,8 @@ public class OrderListServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             }
-
+//            System.out.println("previousState: "+previousState);
+            
             // 「追加ページ」の場合
             if (previousState.equals("ItemDetailsNewServlet")) {
 
@@ -127,10 +128,9 @@ public class OrderListServlet extends HttpServlet {
                 }
             }
 
-            // セッションに保存
             session.setAttribute("order_list", orderList);
-            // JSP にフォワード
             request.getRequestDispatcher("WEB-INF/jsp/order_list.jsp").forward(request, response);
+            
         } catch (Exception e) {
             e.printStackTrace();
             request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);

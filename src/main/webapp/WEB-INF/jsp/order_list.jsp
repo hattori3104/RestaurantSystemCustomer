@@ -76,12 +76,12 @@ const contextPath = '${pageContext.request.contextPath}';
 							<!-- 変更ボタン -->
 							<c:if test="${category_name == 'お好み焼き' || category_name == 'もんじゃ焼き'}">
 							<form action="ItemDetailsChangeServlet" method="post">
-								<input type="hidden" name="from" value="OrderList.jsp">
+								<input type="hidden" name="previous_state" value="OrderList">
 								<input type="hidden" name="order_id" value="<c:out value='${order_id}' />">
 								<input type="hidden" name="product_id" value="<c:out value='${product_id}' />">
 								<input type="hidden" name="product_name" value="<c:out value='${product_name}' />">
 								<input type="hidden" name="category_name" value="<c:out value='${category_name}' />"> 
-								<input type="hidden" name="product_prive" value="<c:out value='${product_price}' />"> 
+								<input type="hidden" name="product_price" value="<c:out value='${product_price}' />"> 
 								<input type="hidden" name="subtotal" value="<c:out value='${menu_subtotal}' />">
 								<!-- トッピングがある場合だけループ -->
 								<c:if test="${not empty orderlist.topping_id}">
@@ -90,11 +90,11 @@ const contextPath = '${pageContext.request.contextPath}';
 										<c:set var="topping_price" value="${orderlist.topping_price[topping.index]}" />
 										<c:set var="topping_quantity" value="${orderlist.topping_quantity[topping.index]}" />
 										<c:set var="topping_stock" value="${orderlist.topping_stock[topping.index]}" />
-										<input type="hidden" name="topping_id[]" value="<c:out value='${topping_id}' />">
-										<input type="hidden" name="topping_name[]" value="<c:out value='${topping_name}' />">
-										<input type="hidden" name="topping_price[]" value="<c:out value='${topping_price}' />">
-										<input type="hidden" name="topping_quantity[]" value="<c:out value='${topping_quantity}' />">
-										<input type="hidden" name="topping_stock[]" value="<c:out value='${topping_stock}' />">
+										<input type="hidden" name="topping_id_arr" value="<c:out value='${topping_id}' />">
+										<input type="hidden" name="topping_name_arr" value="<c:out value='${topping_name}' />">
+										<input type="hidden" name="topping_price_arr" value="<c:out value='${topping_price}' />">
+										<input type="hidden" name="topping_quantity_arr" value="<c:out value='${topping_quantity}' />">
+										<input type="hidden" name="topping_stock_arr" value="<c:out value='${topping_stock}' />">
 									</c:forEach>
 								</c:if>
 								<button class="change-btn">変更</button>
@@ -124,7 +124,7 @@ const contextPath = '${pageContext.request.contextPath}';
 		<p>よろしいですか？</p>
 		<button class="popup-close" id="close-popup">いいえ</button>
 		<!-- 商品を削除 -->
-		<form action="" method="post">
+		<form action="OrderRemoveServlet" method="post">
 			<input type="hidden" name="order_id" id="popup-order-id" />
 			<button type="submit" class="popup-proceed" id="confirm-button">は　い</button>
 		</form>
@@ -135,17 +135,21 @@ const contextPath = '${pageContext.request.contextPath}';
 		<div class="footer-wrapper">
 			<!--ボタン-->
 			<!--注文完了へ遷移-->
-			<form action="${pageContext.request.contextPath}/${Action.COMPLETED}" method="post">
+			<form action="${pageContext.request.contextPath}/OrderCompletedServlet" method="post">
 				<c:forEach var="orderlist" items="${order_list}" varStatus="product">
-					<input type="hidden" id="menu_id" name="${Param.ORDER_ID_ATTR}" value="${orderlist.order_id}">
-					<input type="hidden" name="${Param.PRODUCT_ID_ATTR}" value="${orderlist.product_id}">
-					<input type="hidden" id="countField-<c:out value='${orderlist.order_id}' />" name="${Param.PRODUCT_QUANTITY_ATTR}" value="${orderlist.product_quantity}">
-					<input type="hidden" id="priceField-<c:out value='${orderlist.order_id}' />" name="${Param.SUBTOTAL_ATTR}" value="${orderlist.menu_subtotal}">
+					<input type="hidden" id="menu_id" name="order_id_arr" value="${orderlist.order_id}">
+					<input type="hidden" name="product_id_arr" value="${orderlist.product_id}">
+					<input type="hidden" id="countField-<c:out value='${orderlist.order_id}' />" 
+					name="product_quantity_arr" value="${orderlist.product_quantity}">
+					<input type="hidden" id="priceField-<c:out value='${orderlist.order_id}' />" 
+					name="subtotal_arr" value="${orderlist.menu_subtotal}">
 					<!-- トッピングがある場合にループ -->
 					<c:if test="${not empty orderlist.topping_id}">
 						<c:forEach var="topping_id" items="${orderlist.topping_id}" varStatus="topping">
-							<input type="hidden" name="${Param.TOPPING_ID_}${product.index}" value="${topping_id}">
-							<input type="hidden" id="toppingcountField-<c:out value='${orderlist.order_id}' />-<c:out value='${topping_id}' />" name="${Param.TOPPING_QUANTITY_}${product.index}" value="${orderlist.topping_quantity[topping.index]}">
+							<input type="hidden" name="topping_id_${product.index}" value="${topping_id}">
+							<input type="hidden" 
+							id="toppingcountField-<c:out value='${orderlist.order_id}' />-<c:out value='${topping_id}' />" 
+							name="topping_quantity_${product.index}" value="${orderlist.topping_quantity[topping.index]}">
 						</c:forEach>
 					</c:if>
 				</c:forEach>
@@ -156,7 +160,7 @@ const contextPath = '${pageContext.request.contextPath}';
 				</c:if>
 			</form>
 			<!--メニューへ遷移-->
-			<a href="${pageContext.request.contextPath}/${Action.MENU}">
+			<a href="${pageContext.request.contextPath}/OrderMenuServlet">
 				<button class="fixed-left-button">
 					<img src="${pageContext.request.contextPath}/image/menu.png" alt="メニューのボタン">メニュー
 				</button>

@@ -99,7 +99,7 @@
 <footer class="footer-buttons">
 		<div class="table-number"><c:out value="${sessionScope.table_id}" />卓</div>
 		<div class="footer-wrapper">
-			<form action="WEB-INF/jsp/order_list.jsp" method="post">
+			<form action="OrderListServlet" method="post">
 				<button class="fixed-right-button">
 					<img src="${pageContext.request.contextPath}/image/cart.png" alt="注文リストのボタン">
 					<c:if test="${empty sessionScope.orderListInfo}">
@@ -116,7 +116,7 @@
 					</c:if>
 				</button>
 			</form>
-			<form action="WEB-INF/jsp/order_history.jsp" method="post">
+			<form action="OrderHistoryServlet" method="post">
 				<button class="fixed-left-button">
 					<img src="${pageContext.request.contextPath}/image/menuhistory.png" alt="履歴・お会計のボタン"> 履歴・お会計
 				</button>

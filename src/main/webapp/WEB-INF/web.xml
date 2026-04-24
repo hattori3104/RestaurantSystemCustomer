@@ -9,14 +9,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>ItemDetailsChangeServlet</display-name>
-    <servlet-name>ItemDetailsChangeServlet</servlet-name>
-    <servlet-class>servlet.ItemDetailsChangeServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ItemDetailsChangeServlet</servlet-name>
-    <url-pattern>/ItemDetailsChangeServlet</url-pattern>
-  </servlet-mapping>
 </web-app>

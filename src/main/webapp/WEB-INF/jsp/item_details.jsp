@@ -102,13 +102,13 @@
 		} else if (previousState.equals("OrderList")) {
 		%>
 		<!-- セッションからカテゴリー名を取ってくる -->
-		<c:if test="${not empty changeProductInfo.category_name}">
+		<c:if test="${not empty item_info.category_name}">
 			<c:choose>
-				<c:when test="${changeProductInfo.category_name == 'お好み焼き' || changeProductInfo.category_name == 'もんじゃ焼き'}">
+				<c:when test="${item_info.category_name == 'お好み焼き' || item_info.category_name == 'もんじゃ焼き'}">
 					<p>トッピング</p>
 					<c:if test="${not empty topping_info}">
 						<c:forEach var="topping" items="${topping_info}" varStatus="status">
-							<c:set var="topping_quantity" value="${changeProductInfo.topping_quantity[status.index]}" />
+							<c:set var="topping_quantity" value="${item_info.topping_quantity[status.index]}" />
 							<li class="topping-row">
 								<c:if test="${topping.topping_display_flag == 1}">
 									<div class="break-topping">
@@ -173,23 +173,24 @@
 			%>
 			<form action="OrderListServlet" method="post">
 				<button class="fixed-right-button">
-					<input type="hidden" name="${Param.ORDER_ID}"value="<c:out value='${changeProductInfo.order_id}' />"> 
-					<input type="hidden" name="${Param.PRODUCT_ID}" value="<c:out value='${changeProductInfo.product_id}' />">
-					<input type="hidden" name="${Param.PRODUCT_NAME}" value="<c:out value='${changeProductInfo.product_name}' />">
-					<input type="hidden" name="${Param.CATEGORY_NAME}" value="<c:out value='${changeProductInfo.category_name}' />">
-					<input type="hidden" name="${Param.PRODUCT_PRICE}" value="<c:out value='${changeProductInfo.product_price}' />">
-					<input type="hidden" name="${Param.SUBTOTAL}" value="<c:out value='${changeProductInfo.subtotal}' />">
-					<c:forEach var="topping_id" items="${changeProductInfo.topping_id}" varStatus="status">
-						<c:set var="topping_name" value="${changeProductInfo.topping_name[status.index]}" />
-						<c:set var="topping_price" value="${changeProductInfo.topping_price[status.index]}" />
-						<c:set var="topping_quantity" value="${changeProductInfo.topping_quantity[status.index]}" />
-						<c:set var="topping_stock" value="${changeProductInfo.topping_stock[status.index]}" />
-						<input type="hidden" name="${Param.TOPPING_ID_ATTR}" value="<c:out value='${topping_id}' />">
-						<input type="hidden" name="${Param.TOPPING_NAME_ATTR}" value="<c:out value='${topping_name}' />">
-						<input type="hidden" name="${Param.TOPPING_PRICE_ATTR}" value="<c:out value='${topping_price}' />">
+					<input type="hidden" name="order_id"value="<c:out value='${item_info.order_id}' />"> 
+					<input type="hidden" name="product_id" value="<c:out value='${item_info.product_id}' />"> 
+					<input type="hidden" name="product_name" value="<c:out value='${item_info.product_name}' />">
+					<input type="hidden" name="category_name" value="<c:out value='${item_info.category_name}' />">
+					<input type="hidden" name="product_price" value="<c:out value='${item_info.product_price}' />">
+					<input type="hidden" name="subtotal" value="<c:out value='${item_info.subtotal}' />">
+					<c:forEach var="topping_id" items="${item_info.topping_id}" varStatus="status">
+						<c:set var="topping_name" value="${item_info.topping_name[status.index]}" />
+						<c:set var="topping_price" value="${item_info.topping_price[status.index]}" />
+						<c:set var="topping_quantity" value="${item_info.topping_quantity[status.index]}" />
+						<c:set var="topping_stock" value="${item_info.topping_stock[status.index]}" />
+						<input type="hidden" name="topping_id_arr" value="<c:out value='${topping_id}' />">
+						<input type="hidden" name="topping_name_arr" value="<c:out value='${topping_name}' />">
+						<input type="hidden" name="topping_price_arr" value="<c:out value='${topping_price}' />">
 						<%--valueに変更していない個数がリセットされないように取得した${topping_quantity}を入れる--%>
-						<input type="hidden" name="${Param.TOPPING_QUANTITY_ATTR}" id="topping-<c:out value='${topping_id}' />" value="<c:out value='${topping_quantity}' />">
-						<input type="hidden" name="${Param.TOPPING_STOCK_ATTR}" value="<c:out value='${topping_stock}' />">
+						<input type="hidden" name="topping_quantity_arr" 
+						id="topping-<c:out value='${topping_id}' />" value="<c:out value='${topping_quantity}' />">
+						<input type="hidden" name="topping_stock_arr" value="<c:out value='${topping_stock}' />">
 					</c:forEach>
 					<input type="hidden" name="${Param.TOTAL}" id="input-total" value=""> 
 					<img src="${pageContext.request.contextPath}/image/changeCart.png" alt="変更のボタン"> 変更
@@ -215,8 +216,8 @@
 
 	<script>
     // 商品本体価格
-    const basePrice = <c:out value="${empty item_info ? (empty changeProductInfo ? 0 : changeProductInfo.product_price) : item_info.product_price}" />;
-    const initialTotal = <c:out value="${empty item_info ? (empty changeProductInfo ? 0 : changeProductInfo.subtotal) : item_info.product_price}" />;
+    const basePrice = <c:out value="${empty item_info ? (empty item_info ? 0 : item_info.product_price) : item_info.product_price}" />;
+    const initialTotal = <c:out value="${empty item_info ? (empty item_info ? 0 : item_info.subtotal) : item_info.product_price}" />;
 
     // トッピングの価格を JS オブジェクトで渡す
     const toppingPrices = {
