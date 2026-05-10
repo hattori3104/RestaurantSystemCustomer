@@ -75,7 +75,7 @@ public class OrderCompletedServlet extends HttpServlet {
                     topping_ids, topping_quantities, sessionId);
 
             if (success) {
-                request.getSession().removeAttribute("orderListInfo");
+                request.getSession().removeAttribute("order_list");
                 request.getRequestDispatcher("WEB-INF/jsp/order_completed.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);

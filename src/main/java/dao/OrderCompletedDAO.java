@@ -42,8 +42,11 @@ public class OrderCompletedDAO {
     }
 
     //注文詳細挿入
-    public boolean insertOrderDetails(Connection connection, String[] order_id, String[] product_quantity, String[] order_price, int session_id) {
-        String insertOrderDetailsSql = "INSERT INTO order_details (order_id, product_quantity, order_price, session_id, order_time) VALUES (?, ?, ?, ?, ?)";
+    public boolean insertOrderDetails(Connection connection, 
+            String[] order_id, String[] product_quantity, String[] order_price, int session_id) {
+        String insertOrderDetailsSql = "INSERT "
+                + "INTO order_details (order_id, product_quantity, order_price, session_id, order_time) "
+                + "VALUES (?, ?, ?, ?, ?)";
         int[] rowsAffected = new int[0];
         try (PreparedStatement insertStmt = connection.prepareStatement(insertOrderDetailsSql)) {
 

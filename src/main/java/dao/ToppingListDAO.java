@@ -14,7 +14,8 @@ public class ToppingListDAO {
 
     public List<ToppingInfo> selectToppingList(int product_id) {
         List<ToppingInfo> toppingInfoList = new ArrayList<>();
-        String selectToppingSql = "SELECT tp.topping_id, tp.topping_name, tp.topping_price, tp.topping_stock, tp.topping_display_flag " +
+        String selectToppingSql = "SELECT tp.topping_id, tp.topping_name, tp.topping_price, tp.topping_stock, "
+                + "tp.topping_display_flag " +
                 "FROM topping tp " +
                 "INNER JOIN product_topping pt ON tp.topping_id = pt.topping_id " +
                 "WHERE pt.product_id = ? AND tp.topping_delete_flag = 1";

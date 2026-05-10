@@ -30,7 +30,8 @@ public class AccountingDAO {
                 System.out.println("order_detailsテーブルからデータ取得開始");
 
                 // 3. multiple_order_detailsテーブルに取ってきたorder_details_idと会計情報IDを結び付けて格納
-                String insertMultipleOrderDetailsSql = "INSERT INTO multiple_order_details (order_details_id, accounting_information_id) VALUES (?, ?)";
+                String insertMultipleOrderDetailsSql = "INSERT "
+                        + "INTO multiple_order_details (order_details_id, accounting_information_id) VALUES (?, ?)";
                 try (PreparedStatement insertPs = con.prepareStatement(insertMultipleOrderDetailsSql)) {
                     // 4. order_detailsテーブルのaccounting_flagを1に更新
                     String updateSql = "UPDATE order_details SET accounting_flag = 1 WHERE order_details_id = ?";
@@ -38,7 +39,7 @@ public class AccountingDAO {
                         while (rs.next()) {
                             int orderSessionId = rs.getInt("session_id");
                             int orderDetailsId = rs.getInt("order_details_id");
-                            System.out.println("session_id: "+sessionId+", orderSessonId: "+orderSessionId);
+//                            System.out.println("session_id: "+sessionId+", orderSessonId: "+orderSessionId);
                             if (sessionId == orderSessionId) {
                                 // 5. multiple_order_detailsにorder_details_idと会計情報IDを挿入
                                 insertPs.setInt(1, orderDetailsId);
@@ -115,8 +116,11 @@ public class AccountingDAO {
                 + "WHERE s.session_id = ?;\n"
                 + "";
 
-        String insertsql = "INSERT INTO table_sessions (table_id, session_status, url_token) "
-                + "VALUES (?,'inactive', CONCAT(UUID(), '-', SUBSTRING(MD5(RAND()), 1, 8)))";
+//        String insertsql = "INSERT INTO table_sessions (table_id, session_status, url_token) "
+//                + "VALUES (?,'inactive', CONCAT(UUID(), '-', SUBSTRING(MD5(RAND()), 1, 8)))";
+        String insertsql = "INSERT INTO table_sessions (table_id, session_status, url_token, guest_count) "
+                + "VALUES (?,'inactive', CONCAT(UUID(), '-', SUBSTRING(MD5(RAND()), 1, 8)), 0)";
+
 
         try (Connection con = DBUtil.getConnection();
                 PreparedStatement insertPs = con.prepareStatement(insertsql);

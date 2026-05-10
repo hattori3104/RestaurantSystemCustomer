@@ -163,7 +163,7 @@
 						<input type="hidden" name="topping_quantity" id="topping-<c:out value='${topping.topping_id}' />" value="0">
 						<input type="hidden" name="topping_stock" value="<c:out value='${topping.topping_stock}' />">
 					</c:forEach>
-					<input type="hidden" name="${Param.TOTAL}" id="input-total" value=""> 
+					<input type="hidden" name="total" id="input-total" value=""> 
 					<img src="${pageContext.request.contextPath}/image/addCart.png"alt="追加のボタン"> 追加
 				</button>
 			</form>
@@ -192,7 +192,7 @@
 						id="topping-<c:out value='${topping_id}' />" value="<c:out value='${topping_quantity}' />">
 						<input type="hidden" name="topping_stock_arr" value="<c:out value='${topping_stock}' />">
 					</c:forEach>
-					<input type="hidden" name="${Param.TOTAL}" id="input-total" value=""> 
+					<input type="hidden" name="total" id="input-total" value=""> 
 					<img src="${pageContext.request.contextPath}/image/changeCart.png" alt="変更のボタン"> 変更
 				</button>
 			</form>

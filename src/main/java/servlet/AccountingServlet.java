@@ -42,7 +42,7 @@ public class AccountingServlet extends HttpServlet {
             int total_price = Integer.parseInt(totalPrice);
             
             AccountingDAO dao = new AccountingDAO();
-            dao.processAccountingData(session_id, total_price);
+            dao.processAccountingData(total_price, session_id);
             AccountingInfo accountingInfo = new AccountingInfo(table_id, total_price);
 
             // 卓番セッション

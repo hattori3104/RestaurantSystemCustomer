@@ -1,4 +1,4 @@
-<<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
@@ -59,15 +59,18 @@ const contextPath = '${pageContext.request.contextPath}';
 									<%--トッピング表示--%>
 									<div class="order-item">
 										<div class="topping-name">・<c:out value="${topping_name}" />✕<span><c:out value="${topping_quantity}" /></span></div>
-										<div class="topping-price"><c:out value="${topping_price * topping_quantity}" />円</div>
+										<div class="topping-price">
+										<c:out value="${topping_price * topping_quantity}" />円</div>
 									</div>
-									<c:set var="menu_subtotal" value="${menu_subtotal+(topping_price * topping_quantity)}" />
+									<c:set var="menu_subtotal" 
+									value="${menu_subtotal+(topping_price * topping_quantity)}" />
 								</c:if>
 							</c:forEach>
 						</c:if>
 						<div class="order-item">
 							<div class="subtotal-price">
-								小計: <span id="subtotal-<c:out value='${order_id}' />" data-price="<c:out value='${menu_subtotal}' />"><c:out value="${menu_subtotal}" /></span>円
+								小計: <span id="subtotal-<c:out value='${order_id}' />" 
+								data-price="<c:out value='${menu_subtotal}' />"><c:out value="${menu_subtotal}" /></span>円
 							</div>
 						</div> 
 						<c:set var="total" value="${total+menu_subtotal}" /> 

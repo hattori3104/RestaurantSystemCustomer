@@ -27,15 +27,18 @@ public class OrderHistoryServlet extends HttpServlet {
 	    try {
           
             HttpSession session = request.getSession();
-            
+            if (session == null) System.out.println("Session_Null");
 //            String sessionNumberStr = (String) session.getAttribute("session_id");
+            
 //            if (sessionNumberStr == null || sessionNumberStr.isEmpty()) {
 //                request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
 //                return;
 //            }
 
             int sessionId = (int) session.getAttribute("session_id");
-
+            
+//            int sessionId = Integer.parseInt(sessionNumberStr);
+            
             OrderHistoryDAO dao = new OrderHistoryDAO();
             List<OrderHistoryInfo> orderHistoryInfo = dao.selectOrderHistory(sessionId);
 

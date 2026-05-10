@@ -24,7 +24,7 @@ public class OrderStartDAO {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("OrderStateDAO: selectSessionStatus" + e.getMessage());
+            System.err.println("OrderStartDAO: selectSessionStatus" + e.getMessage());
             e.printStackTrace();
         }
 
@@ -34,7 +34,8 @@ public class OrderStartDAO {
     public String getTableToken(int table_id) {
         
         String url_token = null;
-        String selectTokenSql = "SELECT url_token FROM table_sessions WHERE table_id = ?";
+        String selectTokenSql = "SELECT url_token FROM table_sessions "
+                + "WHERE table_id = ? AND session_status <> 'closed'";
         
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement selectStmt = connection.prepareStatement(selectTokenSql)){
@@ -46,7 +47,7 @@ public class OrderStartDAO {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("OrderStateDAO: getTableToken" + e.getMessage());
+            System.err.println("OrderStartDAO: getTableToken" + e.getMessage());
             e.printStackTrace();
         }
         return url_token;
@@ -66,7 +67,7 @@ public class OrderStartDAO {
             updateStmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.err.println("OrderStateDAO: updateSession" + e.getMessage());
+            System.err.println("OrderStartDAO: updateSession" + e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,7 +89,7 @@ public class OrderStartDAO {
             }
 
         } catch (SQLException e) {
-            System.err.println("OrderStateDAO: selectTableInfo" + e.getMessage());
+            System.err.println("OrderStartDAO: selectTableInfo" + e.getMessage());
             e.printStackTrace();
         }
         return table_info;

@@ -102,16 +102,16 @@
 			<form action="OrderListServlet" method="post">
 				<button class="fixed-right-button">
 					<img src="${pageContext.request.contextPath}/image/cart.png" alt="注文リストのボタン">
-					<c:if test="${empty sessionScope.orderListInfo}">
+					<c:if test="${empty sessionScope.order_list}">
 					<div>
 						注文リスト
 					</div>
 					</c:if>
 					<!--注文リストが空でないときのみ注文件数を表示-->
-					<c:if test="${not empty sessionScope.orderListInfo}">
+					<c:if test="${not empty sessionScope.order_list}">
 					<div class="orderlist">
 						注文リスト
-						<span class="count">${fn:length(sessionScope.orderListInfo)}</span>
+						<span class="count">${fn:length(sessionScope.order_list)}</span>
 					</div>
 					</c:if>
 				</button>
