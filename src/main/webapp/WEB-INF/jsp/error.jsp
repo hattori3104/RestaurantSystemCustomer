@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>error.jsp</title>
+<title>エラー画面</title>
 </head>
 <body>
-ERROR
+エラーが発生しました。
 </body>
 </html>

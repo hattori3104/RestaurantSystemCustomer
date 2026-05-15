@@ -34,7 +34,10 @@
 					<div class="order-item-left">
 						<strong>商品名</strong>
 					</div>
-					<div class="order-item-center">
+					<div class="order-item-center1">
+						<strong>提供</strong>
+					</div>
+					<div class="order-item-center2">
 						<strong>数量</strong>
 					</div>
 					<div class="order-item-right">
@@ -60,11 +63,16 @@
 							</c:forEach>
 						</div>
 
+						<!-- 中央：提供 -->
+						<div class="order-item-center1">
+							<c:out value="${history.order_flag}" />
+						</div>
+						
 						<!-- 中央：数量 -->
-						<div class="order-item-center">
+						<div class="order-item-center2">
 							<c:out value="${history.product_quantity}" />
 						</div>
-
+						
 						<!-- 右：金額 -->
 						<div class="order-item-right">
 							<c:out value="${history.order_price}" />円

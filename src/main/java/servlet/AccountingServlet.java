@@ -41,6 +41,8 @@ public class AccountingServlet extends HttpServlet {
             String totalPrice = request.getParameter("total");
             int total_price = Integer.parseInt(totalPrice);
             
+//            System.out.println("Accounting session_id: "+session_id);
+            
             AccountingDAO dao = new AccountingDAO();
             dao.processAccountingData(total_price, session_id);
             AccountingInfo accountingInfo = new AccountingInfo(table_id, total_price);

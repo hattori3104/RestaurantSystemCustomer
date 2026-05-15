@@ -59,9 +59,9 @@ main {
 }
 
 /* 各セルをテーブルセルにする */
-.order-item-left, .order-item-center, .order-item-right,
-	.order-item-header .order-item-left, .order-item-header .order-item-center,
-	.order-item-header .order-item-right {
+.order-item-left, .order-item-center1, .order-item-center2, .order-item-right,
+	.order-item-header .order-item-left, .order-item-header .order-item-center1,
+	.order-item-header .order-item-center2, .order-item-header .order-item-right {
 	display: table-cell;
 	vertical-align: middle;
 	padding: 8px;
@@ -71,7 +71,7 @@ main {
 	border-left: 1px solid #ccc; /* 区切り線を追加 */
 }
 
-.order-item-left, .order-item-center, .order-item-right {
+.order-item-left, .order-item-center1, .order-item-center2, .order-item-right {
 	overflow-wrap: anywhere; /* どこでも折り返す（新しめのプロパティ） */
 }
 
@@ -82,9 +82,14 @@ main {
 	border-left: none;
 }
 
-.order-item-center, .order-item-header .order-item-center {
-	width: 20%; /* 数量 */
-	text-align: center;
+.order-item-center1, .order-item-header .order-item-center1 {
+	width: 10%; /* 提供 */
+	text-align: right;
+}
+
+.order-item-center2, .order-item-header .order-item-center2 {
+	width: 10%; /* 数量 */
+	text-align: right;
 }
 
 .order-item-right, .order-item-header .order-item-right {
@@ -102,8 +107,8 @@ main {
 }
 
 /* ヘッダーのセルを縦横中央揃えにする */
-.order-item-header .order-item-left, .order-item-header .order-item-center,
-	.order-item-header .order-item-right {
+.order-item-header .order-item-left, .order-item-header .order-item-center1,
+	.order-item-header .order-item-center2, .order-item-header .order-item-right {
 	text-align: center; /* 横方向中央揃え */
 	vertical-align: middle; /* 縦方向中央揃え（既存） */
 }

@@ -55,7 +55,7 @@ public class OrderMenuServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	    try {
-//    	    System.out.println("session_id: " + request.getParameter("session_id"));
+//    	    System.out.println("OrderMenu session_id: " + request.getParameter("session_id"));
 //    	    System.out.println("table_id: " + request.getParameter("table_id"));
 //    	    System.out.println("session_status: " + request.getParameter("session_status"));
 //    	    System.out.println("guest_count: " + request.getParameter("guest_count"));

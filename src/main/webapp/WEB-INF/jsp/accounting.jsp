@@ -28,7 +28,11 @@
 				<span class="underline-text bold-text size-text">合計:${accounting_info.total_price}円(税込)</span>
 			</div>
 		</div>
-		<p class="center-text">レジにてお支払いください</p>
+<!--		<p class="center-text">レジにてお支払いください</p> -->
+<!--		<p class="center-text"><a href = "OrderStartServlet?table_id=${accounting_info.table_id}">
+		金額を確認しました</a></p>
+-->
+		<p class="center-text"><a href = "index.jsp">金額を確認しました</a></p>
 		<p class="center-text">またのご利用をお待ちしております</p>
 	</main>
 	<uji:dispatch />
